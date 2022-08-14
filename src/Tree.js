@@ -180,6 +180,21 @@ const Tree = class {
     if (x > y) return x;
     return y;
   }
+
+  depth(node) {
+    if (!this.root) return depth;
+
+    let queue = [[this.root, 0]];
+    while (queue.length != 0) {
+      let [x, y] = queue[0];
+      if (JSON.stringify(node) === JSON.stringify(x)) return y;
+
+      if (x.leftNode) queue.push([x.leftNode, y + 1]);
+      if (x.rightNode) queue.push([x.rightNode, y + 1]);
+      queue.shift();
+    }
+    return -1;
+  }
 };
 
 export { Tree };
