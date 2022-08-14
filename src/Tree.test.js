@@ -57,12 +57,16 @@ test("Delete item with a single child", () => {
   const tree = new Tree([3, 1, 5, 6, 6, 8, 22]);
   tree.delete(1);
   expect(tree.root.leftNode.value).toBe(3);
-  expect(!tree.root.leftNode.rightNode && !tree.root.leftNode.leftNode).toBe(true)
+  expect(!tree.root.leftNode.rightNode && !tree.root.leftNode.leftNode).toBe(
+    true
+  );
 
   const tree2 = new Tree([3, 1, 5, 6, 6, 8]);
   tree2.delete(8);
   expect(tree2.root.rightNode.value).toBe(6);
-  expect(!tree2.root.rightNode.rightNode && !tree2.root.rightNode.leftNode).toBe(true)
+  expect(
+    !tree2.root.rightNode.rightNode && !tree2.root.rightNode.leftNode
+  ).toBe(true);
 });
 
 test("Delete item with two children", () => {
@@ -73,7 +77,28 @@ test("Delete item with two children", () => {
   expect(tree.root.rightNode.leftNode).toBe(null);
 
   tree.insert(0);
-  tree.delete(1);
-  expect(tree.root.leftNode.value).toBe(3);
-  expect(tree.root.leftNode.rightNode.value).toBe(4);
+  tree.delete(3);
+  expect(tree.root.leftNode.value).toBe(4);
+  expect(tree.root.leftNode.rightNode).toBe(null);
+  expect(tree.root.leftNode.leftNode.leftNode.value).toBe(0);
+});
+
+test("find returns correct node", () => {
+  const tree = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
+  let node = tree.find(8);
+  expect(node.value).toBe(8);
+  expect(node.rightNode.value).toBe(22);
+  expect(node.leftNode.value).toBe(6);
+
+  node = tree.find(6);
+  expect(node.value).toBe(6);
+  expect(!node.rightNode && !node.leftNode).toBe(true);
+});
+
+test("find returns false if node does not exist", () => {
+  const tree = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
+  expect(tree.find(0)).toBe(false);
+
+  const tree1 = new Tree();
+  expect(tree1.find(1)).toBe(false);
 });
