@@ -59,6 +59,16 @@ const Tree = class {
     if (!node.leftNode) return node.value;
     return this.#findMin(node.leftNode);
   }
+
+  find(value) {
+    let pos = this.root;
+    while (pos) {
+        if (pos.value == value) return pos;
+        else if (value > pos.value) pos = pos.rightNode;
+        else pos = pos.leftNode;
+    }
+    return false;
+  }
 };
 
 export { Tree };
