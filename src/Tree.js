@@ -71,8 +71,8 @@ const Tree = class {
   }
 
   levelOrder(
-    fun = function (item) {
-      return item;
+    fun = function (node) {
+      return node.value;
     }
   ) {
     let arr = [];
@@ -81,7 +81,7 @@ const Tree = class {
     let queue = [this.root];
     while (queue.length != 0) {
       let x = queue[0];
-      arr.push(fun(x.value));
+      arr.push(fun(x));
       if (x.leftNode) queue.push(x.leftNode);
       if (x.rightNode) queue.push(x.rightNode);
       queue.shift();
@@ -90,8 +90,8 @@ const Tree = class {
   }
 
   levelOrderRec(
-    fun = function (item) {
-      return item;
+    fun = function (node) {
+      return node.value;
     }
   ) {
     let pos = this.root;
@@ -103,7 +103,7 @@ const Tree = class {
 
   #levelHelper(queue, fun) {
     if (!queue[0]) return;
-    let x = fun(queue[0].value);
+    let x = fun(queue[0]);
     if (queue[0].leftNode) queue.push(queue[0].leftNode);
     if (queue[0].rightNode) queue.push(queue[0].rightNode);
     queue.shift();
@@ -111,8 +111,8 @@ const Tree = class {
   }
 
   inorder(
-    fun = function (item) {
-      return item;
+    fun = function (node) {
+      return node.value;
     }
   ) {
     let pos = this.root;
@@ -124,15 +124,15 @@ const Tree = class {
     let arr = [];
 
     if (pos.leftNode) arr.push(...this.#traverseIn(pos.leftNode, fun));
-    arr.push(fun(pos.value));
+    arr.push(fun(pos));
     if (pos.rightNode) arr.push(...this.#traverseIn(pos.rightNode, fun));
 
     return arr;
   }
 
   preorder(
-    fun = function (item) {
-      return item;
+    fun = function (node) {
+      return node.value;
     }
   ) {
     let pos = this.root;
@@ -143,7 +143,7 @@ const Tree = class {
   #traversePre(pos, fun) {
     let arr = [];
 
-    arr.push(fun(pos.value));
+    arr.push(fun(pos));
     if (pos.leftNode) arr.push(...this.#traversePre(pos.leftNode, fun));
     if (pos.rightNode) arr.push(...this.#traversePre(pos.rightNode, fun));
 
@@ -151,8 +151,8 @@ const Tree = class {
   }
 
   postorder(
-    fun = function (item) {
-      return item;
+    fun = function (node) {
+      return node.value;
     }
   ) {
     let pos = this.root;
@@ -165,7 +165,7 @@ const Tree = class {
 
     if (pos.leftNode) arr.push(...this.#traversePost(pos.leftNode, fun));
     if (pos.rightNode) arr.push(...this.#traversePost(pos.rightNode, fun));
-    arr.push(fun(pos.value));
+    arr.push(fun(pos));
 
     return arr;
   }
@@ -195,6 +195,7 @@ const Tree = class {
     }
     return -1;
   }
+
 };
 
 export { Tree };

@@ -112,8 +112,8 @@ test("levelOrder works with no function parameter", () => {
 test("levelOrder works with a function parameter", () => {
   const tree = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
   expect(
-    tree.levelOrder(function (num) {
-      return num + 1;
+    tree.levelOrder(function (node) {
+      return node.value + 1;
     })
   ).toStrictEqual([6, 4, 9, 2, 5, 7, 23]);
 });
@@ -126,8 +126,8 @@ test("levelOrderRec works with no function parameter", () => {
 test("levelOrderRec works with a function parameter", () => {
   const tree = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
   expect(
-    tree.levelOrderRec(function (num) {
-      return num + 1;
+    tree.levelOrderRec(function (node) {
+      return node.value + 1;
     })
   ).toStrictEqual([6, 4, 9, 2, 5, 7, 23]);
 });
@@ -140,8 +140,8 @@ test("inorder works with no function parameter", () => {
 test("inorder works with a function parameter", () => {
   const tree = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
   expect(
-    tree.inorder(function (num) {
-      return num + 1;
+    tree.inorder(function (node) {
+      return node.value + 1;
     })
   ).toStrictEqual([2, 4, 5, 6, 7, 9, 23]);
 });
@@ -154,8 +154,8 @@ test("preorder works with no function parameter", () => {
 test("preorder works with a function parameter", () => {
   const tree = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
   expect(
-    tree.preorder(function (num) {
-      return num + 1;
+    tree.preorder(function (node) {
+      return node.value + 1;
     })
   ).toStrictEqual([6, 4, 2, 5, 9, 7, 23]);
 });
@@ -168,8 +168,8 @@ test("postorder works with no function parameter", () => {
 test("postorder works with a function parameter", () => {
   const tree = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
   expect(
-    tree.postorder(function (num) {
-      return num + 1;
+    tree.postorder(function (node) {
+      return node.value + 1;
     })
   ).toStrictEqual([2, 5, 4, 7, 23, 9, 6]);
 });
