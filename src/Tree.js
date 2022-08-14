@@ -1,4 +1,4 @@
-import { Node } from "./Node";
+import { Node } from "./Node.js";
 
 const Tree = class {
   constructor(arr = []) {
