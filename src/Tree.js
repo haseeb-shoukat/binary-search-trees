@@ -205,6 +205,11 @@ const Tree = class {
 
     return arr.every((item) => item);
   }
+
+  rebalance() {
+    let arr = this.inorder();
+    this.root = this.buildTree(arr);
+  }
 };
 
 export { Tree };
