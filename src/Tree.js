@@ -109,6 +109,66 @@ const Tree = class {
     queue.shift();
     return [x].concat(this.#levelHelper(queue, fun));
   }
+
+  inorder(
+    fun = function (item) {
+      return item;
+    }
+  ) {
+    let pos = this.root;
+    if (!pos) return [];
+    return this.#traverseIn(pos, fun);
+  }
+
+  #traverseIn(pos, fun) {
+    let arr = [];
+
+    if (pos.leftNode) arr.push(...this.#traverseIn(pos.leftNode, fun));
+    arr.push(fun(pos.value));
+    if (pos.rightNode) arr.push(...this.#traverseIn(pos.rightNode, fun));
+
+    return arr;
+  }
+
+  preorder(
+    fun = function (item) {
+      return item;
+    }
+  ) {
+    let pos = this.root;
+    if (!pos) return [];
+    return this.#traversePre(pos, fun);
+  }
+
+  #traversePre(pos, fun) {
+    let arr = [];
+
+    arr.push(fun(pos.value));
+    if (pos.leftNode) arr.push(...this.#traversePre(pos.leftNode, fun));
+    if (pos.rightNode) arr.push(...this.#traversePre(pos.rightNode, fun));
+
+    return arr;
+  }
+
+  postorder(
+    fun = function (item) {
+      return item;
+    }
+  ) {
+    let pos = this.root;
+    if (!pos) return [];
+    return this.#traversePost(pos, fun);
+  }
+
+  #traversePost(pos, fun) {
+    let arr = [];
+
+    if (pos.leftNode) arr.push(...this.#traversePost(pos.leftNode, fun));
+    if (pos.rightNode) arr.push(...this.#traversePost(pos.rightNode, fun));
+    arr.push(fun(pos.value));
+
+    return arr;
+  }
 };
 
 export { Tree };
