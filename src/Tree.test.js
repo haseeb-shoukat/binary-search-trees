@@ -1,4 +1,5 @@
 import { Tree } from "./Tree";
+import { Node } from "./Node";
 
 test("Creates a tree from a sorted array", () => {
   const tree = new Tree([1, 2, 3, 4, 5, 6]);
@@ -180,4 +181,15 @@ test("height returns correct height of node", () => {
 
   tree.insert(0);
   expect(tree.height(tree.root)).toBe(3);
+});
+
+test("depth returns correct depth of node", () => {
+  const tree = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
+  expect(tree.depth(tree.root.leftNode)).toBe(1);
+  expect(tree.depth(tree.root.leftNode.leftNode)).toBe(2);
+
+  tree.insert(0);
+  expect(tree.depth(tree.root.leftNode.leftNode.leftNode)).toBe(3);
+  expect(tree.depth(tree.root)).toBe(0);
+  expect(tree.depth(new Node(2))).toBe(-1);
 });
