@@ -2,7 +2,7 @@ import { Node } from "./Node";
 
 const Tree = class {
   constructor(arr) {
-    this.root = buildTree([
+    this.root = this.buildTree([
       ...new Set(
         arr.sort(function (a, b) {
           return a - b;
@@ -12,7 +12,9 @@ const Tree = class {
   }
 
   buildTree(arr) {
-    let middle = Math.floor(arr.length / 2);
+    if (arr.length < 1) return null;
+
+    let middle = Math.floor((arr.length - 1) / 2);
     return new Node(
       arr[middle],
       this.buildTree(arr.slice(middle + 1)),
