@@ -218,3 +218,13 @@ test("isBalanced reports balanced trees", () => {
   tree1.insert(12);
   expect(tree1.isBalanced()).toBe(true);
 });
+
+test("rebalance balances an unbalanced tree", () => {
+  const tree = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
+  tree.insert(50);
+  tree.insert(12);
+  tree.insert(11);
+  expect(tree.isBalanced()).toBe(false);
+  tree.rebalance();
+  expect(tree.isBalanced()).toBe(true);
+});
