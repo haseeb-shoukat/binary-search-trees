@@ -174,6 +174,7 @@ const Tree = class {
     let x = 0,
       y = 0;
 
+    if (!node) return 0;
     if (node.rightNode) x = this.height(node.rightNode) + 1;
     if (node.leftNode) y = this.height(node.leftNode) + 1;
 
@@ -196,6 +197,14 @@ const Tree = class {
     return -1;
   }
 
+  isBalanced() {
+    let arr = this.levelOrder((node) => {
+      let cmp = this.height(node.rightNode) - this.height(node.leftNode);
+      return cmp >= -1 && cmp <= 1;
+    });
+
+    return arr.every((item) => item);
+  }
 };
 
 export { Tree };
