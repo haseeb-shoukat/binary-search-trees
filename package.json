@@ -1,0 +1,23 @@
+{
+  "name": "binary-search-trees",
+  "version": "1.0.0",
+  "description": "Create a binary search tree data structure with relevant functions as well as a node structure.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haseeb-shoukat/binary-search-trees.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haseeb-shoukat/binary-search-trees/issues"
+  },
+  "homepage": "https://github.com/haseeb-shoukat/binary-search-trees#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.18.10",
+    "jest": "^28.1.3"
+  }
+}
