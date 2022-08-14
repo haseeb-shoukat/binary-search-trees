@@ -172,3 +172,12 @@ test("postorder works with a function parameter", () => {
     })
   ).toStrictEqual([2, 5, 4, 7, 23, 9, 6]);
 });
+
+test("height returns correct height of node", () => {
+  const tree = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
+  expect(tree.height(tree.root)).toBe(2);
+  expect(tree.height(tree.root.leftNode)).toBe(1);
+
+  tree.insert(0);
+  expect(tree.height(tree.root)).toBe(3);
+});
