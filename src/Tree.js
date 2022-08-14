@@ -63,11 +63,51 @@ const Tree = class {
   find(value) {
     let pos = this.root;
     while (pos) {
-        if (pos.value == value) return pos;
-        else if (value > pos.value) pos = pos.rightNode;
-        else pos = pos.leftNode;
+      if (pos.value == value) return pos;
+      else if (value > pos.value) pos = pos.rightNode;
+      else pos = pos.leftNode;
     }
     return false;
+  }
+
+  levelOrder(
+    fun = function (item) {
+      return item;
+    }
+  ) {
+    let arr = [];
+    if (!this.root) return arr;
+
+    let queue = [this.root];
+    while (queue.length != 0) {
+      let x = queue[0];
+      arr.push(fun(x.value));
+      if (x.leftNode) queue.push(x.leftNode);
+      if (x.rightNode) queue.push(x.rightNode);
+      queue.shift();
+    }
+    return arr;
+  }
+
+  levelOrderRec(
+    fun = function (item) {
+      return item;
+    }
+  ) {
+    let pos = this.root;
+    if (!pos) return [];
+    let arr = this.#levelHelper([pos], fun);
+    arr.pop();
+    return arr;
+  }
+
+  #levelHelper(queue, fun) {
+    if (!queue[0]) return;
+    let x = fun(queue[0].value);
+    if (queue[0].leftNode) queue.push(queue[0].leftNode);
+    if (queue[0].rightNode) queue.push(queue[0].rightNode);
+    queue.shift();
+    return [x].concat(this.#levelHelper(queue, fun));
   }
 };
 
