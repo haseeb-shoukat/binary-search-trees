@@ -102,3 +102,31 @@ test("find returns false if node does not exist", () => {
   const tree1 = new Tree();
   expect(tree1.find(1)).toBe(false);
 });
+
+test("levelOrder works with no function parameter", () => {
+  const tree = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
+  expect(tree.levelOrder()).toStrictEqual([5, 3, 8, 1, 4, 6, 22]);
+});
+
+test("levelOrder works with a function parameter", () => {
+  const tree = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
+  expect(
+    tree.levelOrder(function (num) {
+      return num + 1;
+    })
+  ).toStrictEqual([6, 4, 9, 2, 5, 7, 23]);
+});
+
+test("levelOrderRec works with no function parameter", () => {
+  const tree = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
+  expect(tree.levelOrderRec()).toStrictEqual([5, 3, 8, 1, 4, 6, 22]);
+});
+
+test("levelOrderRec works with a function parameter", () => {
+  const tree = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
+  expect(
+    tree.levelOrderRec(function (num) {
+      return num + 1;
+    })
+  ).toStrictEqual([6, 4, 9, 2, 5, 7, 23]);
+});
