@@ -169,6 +169,17 @@ const Tree = class {
 
     return arr;
   }
+
+  height(node) {
+    let x = 0,
+      y = 0;
+
+    if (node.rightNode) x = this.height(node.rightNode) + 1;
+    if (node.leftNode) y = this.height(node.leftNode) + 1;
+
+    if (x > y) return x;
+    return y;
+  }
 };
 
 export { Tree };
