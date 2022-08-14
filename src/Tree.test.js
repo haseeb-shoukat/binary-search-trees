@@ -193,3 +193,28 @@ test("depth returns correct depth of node", () => {
   expect(tree.depth(tree.root)).toBe(0);
   expect(tree.depth(new Node(2))).toBe(-1);
 });
+
+test("isBalanced reports unbalanced trees", () => {
+  const tree = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
+  tree.insert(2);
+  tree.insert(1);
+  expect(tree.isBalanced()).toBe(false);
+
+  const tree1 = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
+  tree1.insert(50);
+  tree1.insert(12);
+  tree1.insert(11);
+  tree1.insert(10);
+  expect(tree1.isBalanced()).toBe(false);
+});
+
+test("isBalanced reports balanced trees", () => {
+  const tree = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
+  tree.insert(0);
+  expect(tree.isBalanced()).toBe(true);
+
+  const tree1 = new Tree([3, 1, 5, 6, 6, 8, 22, 4]);
+  tree1.insert(50);
+  tree1.insert(12);
+  expect(tree1.isBalanced()).toBe(true);
+});
